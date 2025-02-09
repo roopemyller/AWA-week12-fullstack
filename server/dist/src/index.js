@@ -15,7 +15,7 @@ router.post("/api/book", async (req, res) => {
         return;
     }
 });
-router.get("/books", async (req, res) => {
+router.get("/api/books", async (req, res) => {
     try {
         const books = await Book_1.Book.find();
         res.status(201).json(books);
