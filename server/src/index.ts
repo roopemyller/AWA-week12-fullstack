@@ -3,7 +3,7 @@ import { Book } from "../models/Book"
 
 const router: Router = Router()
 
-router.post("/book", async (req: Request, res: Response) => {
+router.post("/api/book", async (req: Request, res: Response) => {
     try {
       const { author, name, pages } = req.body
       const book = new Book({ author, name, pages })
