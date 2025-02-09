@@ -32,12 +32,12 @@ function App() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name, author, pages }),
+      body: JSON.stringify({ name, author, pages: Number(pages) }),
     })
 
     if(response.ok){
         const newBook = await response.json()
-        console.log(newBook)
+        console.log("Book added: ", newBook)
         setName('')
         setAuthor('')
         setPages('')
@@ -95,7 +95,7 @@ function App() {
                     variant='outlined'
                     onChange={e => setPages(e.target.value)}
                 />
-                <Button type='submit' variant='contained' onClick={submitNewBook}>Add Book</Button>
+                <Button id="submit" type='submit' variant='contained' onClick={submitNewBook}>Add Book</Button>
             </Box>
         </MuiCard>
     </>
