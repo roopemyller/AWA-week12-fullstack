@@ -1,5 +1,5 @@
 import mongoose, { Connection } from 'mongoose'
-import cors from 'cors'
+import cors, { CorsOptions } from 'cors'
 import router from "./src/index"
 import morgan from 'morgan'
 import express, {Express} from "express"
@@ -8,7 +8,13 @@ const app: Express = express()
 const port: number = 1234
 
 // Middleware
-app.use(cors())
+if (process.env.NODE_ENV === 'development') {
+  const corsOptions: CorsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200
+  }
+  app.use(cors(corsOptions))
+}
 app.use(express.json())
 
 // MongoDB database connection

@@ -11,7 +11,13 @@ const express_1 = __importDefault(require("express"));
 const app = (0, express_1.default)();
 const port = 1234;
 // Middleware
-app.use((0, cors_1.default)());
+if (process.env.NODE_ENV === 'development') {
+    const corsOptions = {
+        origin: 'http://localhost:3000',
+        optionsSuccessStatus: 200
+    };
+    app.use((0, cors_1.default)(corsOptions));
+}
 app.use(express_1.default.json());
 // MongoDB database connection
 const mongoDB = "mongodb://127.0.0.1:27017/testdb";
